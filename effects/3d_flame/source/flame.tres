@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d374y7s5fqt6l"]
+
+[ext_resource type="Shader" path="res://effects/3d_flame/source/flame.gdshader" id="1_ck3nb"]
+[ext_resource type="Texture2D" uid="uid://d2y4bs0conyqu" path="res://effects/3d_flame/source/flame_sdf.png" id="2_nvbm8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iawmq"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgi3k"]
+seamless = true
+noise = SubResource("FastNoiseLite_iawmq")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ck3nb")
+shader_parameter/flame_color = Color(0.992157, 0.498039, 0, 1)
+shader_parameter/flame_sdf_sampler = ExtResource("2_nvbm8")
+shader_parameter/voronoi_sampler = SubResource("NoiseTexture2D_rgi3k")

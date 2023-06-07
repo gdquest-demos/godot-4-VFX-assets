@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5ycywbdqkrt5"]
+
+[ext_resource type="Material" uid="uid://c3alpovjgx204" path="res://backgrounds/space/source/space_material.tres" id="1_mdcuy"]
+[ext_resource type="Script" path="res://backgrounds/space/preview/wiggle_camera.gd" id="2_g3vbn"]
+[ext_resource type="Script" path="res://backgrounds/space/preview/space_background.gd" id="4_qv2eu"]
+
+[node name="SpacePreview" type="Node"]
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="World2D"]
+script = ExtResource("2_g3vbn")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Space" type="ColorRect" parent="Background"]
+material = ExtResource("1_mdcuy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_qv2eu")

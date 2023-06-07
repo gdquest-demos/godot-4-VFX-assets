@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://0qtv32q52m4a"]
+
+[ext_resource type="Shader" path="res://materials/iridescent/source/star_shader.gdshader" id="1_jo50j"]
+[ext_resource type="Texture2D" uid="uid://disn7gglbscci" path="res://materials/iridescent/source/face_noise_direction.png" id="2_ky22y"]
+[ext_resource type="Script" path="res://materials/iridescent/preview/spin.gd" id="2_wil0b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_510vk"]
+render_priority = 0
+shader = ExtResource("1_jo50j")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/specular = 0.65
+shader_parameter/roughness = 0.65
+shader_parameter/metallic = 0.0
+shader_parameter/uv_scale = Vector2(6, 4)
+shader_parameter/glitter_glow_intensity = 4.0
+shader_parameter/noise_direction_sampler = ExtResource("2_ky22y")
+shader_parameter/shimmer_glow_intensity = 1.0
+shader_parameter/fresnel_power = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_p1uh3"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="Environment" id="Environment_u3i43"]
+background_mode = 1
+background_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.423529, 0.423529, 0.423529, 1)
+tonemap_mode = 2
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.1
+
+[node name="IridescentPreview" type="Node3D"]
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+fov = 45.0
+
+[node name="MaterialMesh" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_510vk")
+mesh = SubResource("SphereMesh_p1uh3")
+script = ExtResource("2_wil0b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3i43")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -2)

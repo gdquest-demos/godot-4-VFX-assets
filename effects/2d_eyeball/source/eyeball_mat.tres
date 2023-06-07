@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://mxry6rvycrlk"]
+
+[ext_resource type="Shader" path="res://effects/2d_eyeball/source/eyeball.gdshader" id="1_d157o"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_d157o")
+shader_parameter/eye_color = Color(0.945098, 0.945098, 0.937255, 1)
+shader_parameter/light_color = Color(1, 1, 1, 1)
+shader_parameter/shadow_color = Color(0.866667, 0.627451, 0.588235, 1)
+shader_parameter/eye_offset = Vector2(0, 0)
+shader_parameter/iris_color = Color(0.54902, 0.611765, 0.47451, 1)
+shader_parameter/pupil_dilation = 0.5

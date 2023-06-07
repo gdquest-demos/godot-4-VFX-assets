@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ctnipgxo3l72h"]
+
+[ext_resource type="Shader" path="res://effects/3d_smoke_explosion/source/materials/outer_smoke.gdshader" id="1_nj1cu"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_nj1cu")
+shader_parameter/albedo = Color(0.898039, 0.898039, 0.898039, 1)
+shader_parameter/progress = 0.0
+shader_parameter/smoothness = 0.2
+shader_parameter/ease = 1.0
+shader_parameter/base_scale = 0.0
+shader_parameter/deformation_scale = 0.0
+shader_parameter/texture_offset = 0.0

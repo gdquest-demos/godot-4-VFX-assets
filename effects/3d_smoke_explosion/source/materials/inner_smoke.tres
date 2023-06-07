@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dr7gyunhpjiwf"]
+
+[ext_resource type="Shader" path="res://effects/3d_smoke_explosion/source/materials/inner_smoke.gdshader" id="1_54yo8"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_54yo8")
+shader_parameter/albedo = Color(0.796078, 0.796078, 0.796078, 1)
+shader_parameter/progress = 0.0
+shader_parameter/smoothness = 0.01
+shader_parameter/ease = 2.0
+shader_parameter/base_scale = 0.0
+shader_parameter/deformation_scale = 0.2
+shader_parameter/texture_offset = 0.0
+shader_parameter/fresnel_offset = 2.0
+shader_parameter/global_alpha = 1.0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://x2eoomye7pko"]
+
+[ext_resource type="Material" uid="uid://ddtev0kpuc5sw" path="res://materials/3d_stylized_water/source/materials/stylized_water.tres" id="1_yiol8"]
+[ext_resource type="ArrayMesh" uid="uid://fcqq2n86s7yl" path="res://materials/3d_stylized_water/preview/terrain.obj" id="2_k3vqq"]
+
+[sub_resource type="Environment" id="Environment_4scki"]
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_72gh0"]
+size = Vector2(10, 10)
+subdivide_width = 40
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aaobn"]
+albedo_color = Color(0.737255, 0.737255, 0.737255, 1)
+
+[node name="stylized_water_preview" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4scki")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 50.0
+
+[node name="Water" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_yiol8")
+mesh = SubResource("PlaneMesh_72gh0")
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.066, 0.071)
+material_override = SubResource("StandardMaterial3D_aaobn")
+mesh = ExtResource("2_k3vqq")

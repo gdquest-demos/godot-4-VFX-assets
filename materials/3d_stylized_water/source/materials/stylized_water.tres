@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ddtev0kpuc5sw"]
+
+[ext_resource type="Shader" path="res://materials/3d_stylized_water/source/materials/water_shader.gdshader" id="1_nncnn"]
+[ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://materials/3d_stylized_water/source/textures/caustic_texture.png" id="2_i3tqe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q6gai"]
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_34fvu"]
+seamless = true
+noise = SubResource("FastNoiseLite_q6gai")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nncnn")
+shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_depth_color = Color(0.0627451, 0.380392, 0.666667, 1)
+shader_parameter/water_edge_distance = 0.04
+shader_parameter/water_depth_distance = 1.0
+shader_parameter/water_texture_scale = 8.0
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_34fvu")
+shader_parameter/caustic_sampler = ExtResource("2_i3tqe")

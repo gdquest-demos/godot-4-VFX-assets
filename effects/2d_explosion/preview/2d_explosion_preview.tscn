@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnb5ew7lw7b3t"]
+
+[ext_resource type="Script" path="res://effects/2d_explosion/preview/2d_explosion_preview.gd" id="1_tuykn"]
+
+[node name="2DExplosionPreview" type="Node2D"]
+script = ExtResource("1_tuykn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
+
+[node name="ExplosionHolder" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.913725, 0.913725, 0.913725, 1)

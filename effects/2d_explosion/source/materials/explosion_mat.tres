@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://banma14a320r1"]
+
+[ext_resource type="Shader" path="res://effects/2d_explosion/source/materials/explosion.gdshader" id="1_ebfgn"]
+
+[sub_resource type="Gradient" id="Gradient_vpxwu"]
+offsets = PackedFloat32Array(0.782609, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6ieyg"]
+gradient = SubResource("Gradient_vpxwu")
+
+[sub_resource type="Gradient" id="Gradient_hjq66"]
+resource_local_to_scene = true
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.649275)
+colors = PackedColorArray(1, 0.7, 0, 1, 1, 0.516667, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_etq67"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_hjq66")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1tmuu"]
+noise_type = 2
+fractal_type = 0
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e8bf3"]
+seamless = true
+noise = SubResource("FastNoiseLite_1tmuu")
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ebfgn")
+shader_parameter/offset = 0.513
+shader_parameter/time = 0.0
+shader_parameter/texture_offset = 0.0
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_e8bf3")
+shader_parameter/gradient = SubResource("GradientTexture1D_etq67")
+shader_parameter/edge_gradient = SubResource("GradientTexture1D_6ieyg")

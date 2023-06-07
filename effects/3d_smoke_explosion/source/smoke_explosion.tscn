@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0njclhg1d1go"]
+
+[ext_resource type="Script" path="res://effects/3d_smoke_explosion/source/smoke_explosion.gd" id="1_qgff4"]
+[ext_resource type="Material" uid="uid://ctnipgxo3l72h" path="res://effects/3d_smoke_explosion/source/materials/outer_smoke.tres" id="2_f03xg"]
+[ext_resource type="ArrayMesh" uid="uid://cxh3afoly2pv6" path="res://effects/3d_smoke_explosion/source/smoke_sphere.obj" id="3_wrdb5"]
+[ext_resource type="Material" uid="uid://dr7gyunhpjiwf" path="res://effects/3d_smoke_explosion/source/materials/inner_smoke.tres" id="4_ruuov"]
+[ext_resource type="Animation" uid="uid://douyyuwt8gkh7" path="res://effects/3d_smoke_explosion/source/default.res" id="5_ryyqy"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a08pi"]
+_data = {
+"poof": ExtResource("5_ryyqy")
+}
+
+[node name="SmokeExplosion" type="Node3D"]
+script = ExtResource("1_qgff4")
+
+[node name="OuterSmoke" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_f03xg")
+mesh = ExtResource("3_wrdb5")
+
+[node name="InnerSmoke" type="MeshInstance3D" parent="."]
+material_override = ExtResource("4_ruuov")
+mesh = ExtResource("3_wrdb5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_a08pi")
+}

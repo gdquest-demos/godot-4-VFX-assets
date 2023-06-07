@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bpbpb2te30vp5"]
+
+[ext_resource type="Shader" path="res://effects/2d_explosion/source/materials/explosion_particles.gdshader" id="1_m37p1"]
+
+[sub_resource type="Gradient" id="Gradient_qe1bd"]
+offsets = PackedFloat32Array(0, 0.0985507, 0.904348, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y6qyf"]
+gradient = SubResource("Gradient_qe1bd")
+
+[resource]
+shader = ExtResource("1_m37p1")
+shader_parameter/opacity_gradient = SubResource("GradientTexture1D_y6qyf")

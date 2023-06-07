@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxh3afoly2pv6"
+path="res://.godot/imported/smoke_sphere.obj-e2778fd3f606a1872d596976e707903f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/smoke_sphere.obj-e2778fd3f606a1872d596976e707903f.mesh"]
+
+source_file="res://effects/3d_smoke_explosion/source/smoke_sphere.obj"
+dest_files=["res://.godot/imported/smoke_sphere.obj-e2778fd3f606a1872d596976e707903f.mesh", "res://.godot/imported/smoke_sphere.obj-e2778fd3f606a1872d596976e707903f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

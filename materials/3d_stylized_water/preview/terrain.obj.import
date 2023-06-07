@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://fcqq2n86s7yl"
+path="res://.godot/imported/terrain.obj-1235c52b0a66d943f17319edc5645722.mesh"
+
+[deps]
+
+files=["res://.godot/imported/terrain.obj-1235c52b0a66d943f17319edc5645722.mesh"]
+
+source_file="res://materials/3d_stylized_water/preview/terrain.obj"
+dest_files=["res://.godot/imported/terrain.obj-1235c52b0a66d943f17319edc5645722.mesh", "res://.godot/imported/terrain.obj-1235c52b0a66d943f17319edc5645722.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

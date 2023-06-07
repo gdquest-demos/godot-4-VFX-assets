@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cno270o4b30tc"]
+
+[ext_resource type="Material" uid="uid://d374y7s5fqt6l" path="res://effects/3d_flame/source/flame.tres" id="1_ki1c3"]
+
+[sub_resource type="Environment" id="Environment_8pv7t"]
+background_mode = 1
+background_color = Color(0.223529, 0.223529, 0.223529, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.462745, 0.462745, 0.462745, 1)
+tonemap_mode = 2
+tonemap_exposure = 0.8
+tonemap_white = 1.2
+glow_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ylqw3"]
+size = Vector2(0.75, 1)
+
+[node name="FlamePreview" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8pv7t")
+
+[node name="Flame" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_ki1c3")
+mesh = SubResource("QuadMesh_ylqw3")
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+fov = 45.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+shadow_enabled = true

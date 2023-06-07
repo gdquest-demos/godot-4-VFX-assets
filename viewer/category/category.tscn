@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcf4j1tc8k7fy"]
+
+[ext_resource type="Script" path="res://viewer/category/category.gd" id="1_nbhcw"]
+[ext_resource type="PackedScene" uid="uid://ce4ctbr30l424" path="res://viewer/card/card.tscn" id="1_x83a0"]
+[ext_resource type="FontFile" uid="uid://dr4rawb8ismai" path="res://viewer/assets/fonts/inter/Inter-ExtraBold.ttf" id="3_xbetc"]
+
+[node name="Category" type="VBoxContainer"]
+theme_override_constants/separation = 12
+script = ExtResource("1_nbhcw")
+card_scene = ExtResource("1_x83a0")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xbetc")
+theme_override_font_sizes/font_size = 12
+text = "Category"
+
+[node name="Cards" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 3

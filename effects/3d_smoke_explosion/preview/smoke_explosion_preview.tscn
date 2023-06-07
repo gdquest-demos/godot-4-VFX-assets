@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4okclbh53o5j"]
+
+[ext_resource type="Script" path="res://effects/3d_smoke_explosion/preview/smoke_explosion_preview.gd" id="1_1j44b"]
+[ext_resource type="Texture2D" uid="uid://dl6uldyplyn5w" path="res://effects/3d_smoke_explosion/preview/light_grid.png" id="2_hvduf"]
+
+[sub_resource type="Environment" id="Environment_03wtx"]
+background_mode = 1
+background_color = Color(0.682353, 0.682353, 0.682353, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.462745, 0.462745, 0.462745, 1)
+tonemap_mode = 2
+tonemap_exposure = 0.8
+tonemap_white = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu2jy"]
+diffuse_mode = 1
+specular_mode = 2
+albedo_color = Color(0.352941, 0.352941, 0.352941, 1)
+albedo_texture = ExtResource("2_hvduf")
+uv1_scale = Vector3(14, 14, 14)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p7wji"]
+size = Vector2(20, 20)
+
+[node name="3DSmokeExplosion" type="Node3D"]
+script = ExtResource("1_1j44b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_03wtx")
+
+[node name="SmokeHolder" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2, 0)
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573577, 0, -0.573577, 0.819152, 0, 1.9, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+fov = 25.0
+
+[node name="Background" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lu2jy")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_p7wji")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 0, 0)
+shadow_enabled = true

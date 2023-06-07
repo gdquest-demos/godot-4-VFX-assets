@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgmgikadw5ape"
+path="res://.godot/imported/roundcube.obj-6ec8509fe5c0955dac14cc835864515f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roundcube.obj-6ec8509fe5c0955dac14cc835864515f.mesh"]
+
+source_file="res://shared/mesh/roundcube.obj"
+dest_files=["res://.godot/imported/roundcube.obj-6ec8509fe5c0955dac14cc835864515f.mesh", "res://.godot/imported/roundcube.obj-6ec8509fe5c0955dac14cc835864515f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

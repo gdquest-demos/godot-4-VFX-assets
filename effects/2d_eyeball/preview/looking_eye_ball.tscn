@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://7ulx4vobqy2n"]
+
+[ext_resource type="Script" path="res://effects/2d_eyeball/preview/looking_eye_ball.gd" id="1_m044m"]
+[ext_resource type="Material" uid="uid://mxry6rvycrlk" path="res://effects/2d_eyeball/source/eyeball_mat.tres" id="1_txgr0"]
+
+[node name="LookingEyeball" type="Node2D"]
+script = ExtResource("1_m044m")
+
+[node name="EyeBall" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = ExtResource("1_txgr0")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2

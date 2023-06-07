@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5dnajmh5rbve"]
+
+[ext_resource type="Material" uid="uid://mxry6rvycrlk" path="res://effects/2d_eyeball/source/eyeball_mat.tres" id="1_ql5dl"]
+
+[node name="EyeBall" type="Node2D"]
+
+[node name="EyeBall" type="ColorRect" parent="."]
+material = ExtResource("1_ql5dl")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2

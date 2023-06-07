@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://mlkqe132x3fb"]
+
+[ext_resource type="PackedScene" uid="uid://7ulx4vobqy2n" path="res://effects/2d_eyeball/preview/looking_eye_ball.tscn" id="1_3cwxb"]
+
+[node name="EyeballPreview" type="Node2D"]
+
+[node name="LookingEyeball" parent="." instance=ExtResource("1_3cwxb")]
+position = Vector2(-160, 0)
+
+[node name="LookingEyeball2" parent="." instance=ExtResource("1_3cwxb")]
+position = Vector2(160, 0)
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.913725, 0.913725, 0.913725, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
