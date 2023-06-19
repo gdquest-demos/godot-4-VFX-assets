@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://b1hadsyjfjrjd"]
+
+[ext_resource type="Script" path="res://effects/3d_paintball_projectile/preview/paintball_projectile_preview.gd" id="1_f2ua7"]
+[ext_resource type="PackedScene" uid="uid://bqn3hmdo8xjq6" path="res://effects/3d_paintball_projectile/source/projectile/paint_projectile.tscn" id="2_3srft"]
+[ext_resource type="PackedScene" uid="uid://dguqotxkmq1hr" path="res://effects/3d_paintball_projectile/source/impact/paint_impact.tscn" id="3_1e1bc"]
+[ext_resource type="PackedScene" uid="uid://dqb0ht4ysrqtm" path="res://effects/3d_paintball_projectile/source/impact_decal/paint_impact_decal.tscn" id="3_ia7cn"]
+[ext_resource type="PackedScene" uid="uid://hx23bmjlhec5" path="res://effects/3d_paintball_projectile/source/shot/paint_shot.tscn" id="3_qnog8"]
+[ext_resource type="Texture2D" uid="uid://dl6uldyplyn5w" path="res://effects/3d_smoke_explosion/preview/light_grid.png" id="6_ta5tf"]
+
+[sub_resource type="Environment" id="Environment_bchem"]
+background_mode = 1
+background_color = Color(0.878431, 0.878431, 0.878431, 1)
+ambient_light_color = Color(0.682353, 0.682353, 0.682353, 1)
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5csdg"]
+diffuse_mode = 1
+specular_mode = 2
+albedo_color = Color(0.160784, 0.160784, 0.160784, 1)
+albedo_texture = ExtResource("6_ta5tf")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cribb"]
+size = Vector2(20, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6mv71"]
+size = Vector3(0.25, 8, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gb657"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qvvy0"]
+radius = 0.05
+height = 0.1
+
+[node name="PaintballProjectilePreview" type="Node"]
+script = ExtResource("1_f2ua7")
+paint_projectile = ExtResource("2_3srft")
+paint_shot = ExtResource("3_qnog8")
+paint_impact = ExtResource("3_1e1bc")
+paint_impact_decal = ExtResource("3_ia7cn")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.4
+autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bchem")
+
+[node name="World3D" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Ground" type="MeshInstance3D" parent="World3D"]
+material_override = SubResource("StandardMaterial3D_5csdg")
+mesh = SubResource("PlaneMesh_cribb")
+
+[node name="Wall" type="MeshInstance3D" parent="World3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.125, 1, 0)
+material_override = SubResource("StandardMaterial3D_5csdg")
+mesh = SubResource("BoxMesh_6mv71")
+
+[node name="CameraAnchor" type="Node3D" parent="World3D"]
+transform = Transform3D(0.422618, 0.23457, -0.875426, 0, 0.965926, 0.258819, 0.906308, -0.109382, 0.408218, 0.25, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="World3D/CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+fov = 50.0
+
+[node name="Origin" type="Marker3D" parent="World3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0)
+
+[node name="Sphere" type="MeshInstance3D" parent="World3D/Origin"]
+material_override = SubResource("StandardMaterial3D_gb657")
+mesh = SubResource("SphereMesh_qvvy0")
+
+[node name="Target" type="Marker3D" parent="World3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.25, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World3D"]
+transform = Transform3D(0.707107, 0.5, -0.5, 0, 0.707106, 0.707107, 0.707107, -0.5, 0.5, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="PaintImpactDecal2" parent="World3D" instance=ExtResource("3_ia7cn")]
+transform = Transform3D(0.459516, 0, -0.197091, 0, 0.5, 0, 0.197091, 0, 0.459516, 0.469133, 0, -1.38693)
+modulate = Color(0.96, 0.192, 0, 0.603922)
+normal_fade = 0.0
+
+[node name="PaintImpactDecal3" parent="World3D" instance=ExtResource("3_ia7cn")]
+transform = Transform3D(0.416736, 0, 0.682884, 0, 0.8, 0, -0.682884, 0, 0.416736, 0.443811, -1.19209e-07, 1.2103)
+modulate = Color(0.96, 0.192, 0, 0.603922)
+normal_fade = 0.0
+
+[node name="PaintImpactDecal4" parent="World3D" instance=ExtResource("3_ia7cn")]
+transform = Transform3D(-0.792284, 0, 0.110841, 0, 0.8, 0, -0.110841, 0, -0.792284, -0.0528209, 2.38419e-07, -0.962954)
+modulate = Color(0.96, 0.192, 0, 0.603922)
+normal_fade = 0.0

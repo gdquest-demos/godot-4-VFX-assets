@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dguqotxkmq1hr"]
+
+[ext_resource type="Script" path="res://effects/3d_paintball_projectile/source/impact/paint_impact.gd" id="1_qrcy2"]
+[ext_resource type="Material" uid="uid://w317tu0jbyle" path="res://effects/3d_paintball_projectile/source/materials/paint_projectile.tres" id="2_4xxx5"]
+[ext_resource type="ArrayMesh" uid="uid://dc2ubyamtq2bw" path="res://effects/3d_paintball_projectile/source/meshes/small_splatter.obj" id="3_586ph"]
+
+[sub_resource type="Curve" id="Curve_r4ibj"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gjbnp"]
+curve = SubResource("Curve_r4ibj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m2x11"]
+lifetime_randomness = 0.2
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+damping_min = 2.0
+damping_max = 10.0
+scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_gjbnp")
+
+[node name="PaintImpact" type="Node3D"]
+script = ExtResource("1_qrcy2")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = ExtResource("2_4xxx5")
+amount = 6
+lifetime = 0.4
+preprocess = 0.1
+explosiveness = 1.0
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_m2x11")
+draw_pass_1 = ExtResource("3_586ph")

@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bluuqsfq7dm6d"]
+
+[ext_resource type="Shader" path="res://effects/3d_paintball_projectile/source/materials/splatter.gdshader" id="1_nv6ut"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3wpu0"]
+noise_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qgjb5"]
+seamless = true
+noise = SubResource("FastNoiseLite_3wpu0")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nv6ut")
+shader_parameter/albedo = Color(1, 0.415686, 0, 1)
+shader_parameter/voronoi_sampler = SubResource("NoiseTexture2D_qgjb5")

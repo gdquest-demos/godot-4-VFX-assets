@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqn3hmdo8xjq6"]
+
+[ext_resource type="Material" uid="uid://w317tu0jbyle" path="res://effects/3d_paintball_projectile/source/materials/paint_projectile.tres" id="1_qjku5"]
+[ext_resource type="ArrayMesh" uid="uid://tulb2hesjvgo" path="res://effects/3d_paintball_projectile/source/meshes/projectile.obj" id="2_yv1rb"]
+[ext_resource type="Material" uid="uid://bluuqsfq7dm6d" path="res://effects/3d_paintball_projectile/source/materials/splatter.tres" id="4_vdsgi"]
+
+[sub_resource type="Curve" id="Curve_8agh4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hs21v"]
+curve = SubResource("Curve_8agh4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2big0"]
+lifetime_randomness = 0.8
+direction = Vector3(0, 0, 0)
+spread = 60.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+damping_min = 0.5
+damping_max = 2.0
+scale_min = 0.05
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_hs21v")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tqxx2"]
+size = Vector2(0.4, 1)
+
+[node name="PaintProjectile" type="Node3D"]
+
+[node name="Projectile" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, -1.74846e-09, 0.04, 0, -0.04, -1.74846e-09, 0, 0, 0)
+material_override = ExtResource("1_qjku5")
+mesh = ExtResource("2_yv1rb")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+material_override = ExtResource("4_vdsgi")
+lifetime = 0.4
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_2big0")
+draw_pass_1 = SubResource("QuadMesh_tqxx2")
+metadata/_edit_lock_ = true

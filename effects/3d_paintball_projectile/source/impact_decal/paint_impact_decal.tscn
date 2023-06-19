@@ -1,0 +1,24 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqb0ht4ysrqtm"]
+
+[ext_resource type="Texture2D" uid="uid://crk0xymh3bevk" path="res://effects/3d_paintball_projectile/source/textures/splash_1_albedo.png" id="1_wouf2"]
+[ext_resource type="Texture2D" uid="uid://b0o0tudicukh5" path="res://effects/3d_paintball_projectile/source/textures/splash_1_normal.png" id="2_6ab6d"]
+[ext_resource type="Texture2D" uid="uid://bisepvf4vy4vt" path="res://effects/3d_paintball_projectile/source/textures/paint_decal_orm.png" id="3_3gkjy"]
+[ext_resource type="Script" path="res://effects/3d_paintball_projectile/source/impact_decal/paint_impact_decal.gd" id="3_fy7rc"]
+[ext_resource type="Texture2D" uid="uid://kaemdfi25ek4" path="res://effects/3d_paintball_projectile/source/textures/splash_2_albedo.png" id="5_paibq"]
+[ext_resource type="Texture2D" uid="uid://pw0qo3ud2637" path="res://effects/3d_paintball_projectile/source/textures/splash_3_albedo.png" id="6_bxyqc"]
+[ext_resource type="Texture2D" uid="uid://d1c2lybmyag36" path="res://effects/3d_paintball_projectile/source/textures/splash_4_albedo.png" id="7_tgyh3"]
+[ext_resource type="Texture2D" uid="uid://bqrraeef7dl0n" path="res://effects/3d_paintball_projectile/source/textures/splash_2_normal.png" id="8_pxiaa"]
+[ext_resource type="Texture2D" uid="uid://c50ci81ojoh7b" path="res://effects/3d_paintball_projectile/source/textures/splash_3_normal.png" id="9_cqslj"]
+[ext_resource type="Texture2D" uid="uid://ba8tlilo0anle" path="res://effects/3d_paintball_projectile/source/textures/splash_4_normal.png" id="10_014r3"]
+
+[node name="PaintImpactDecal" type="Decal"]
+size = Vector3(1, 0.05, 1)
+texture_albedo = ExtResource("1_wouf2")
+texture_normal = ExtResource("2_6ab6d")
+texture_orm = ExtResource("3_3gkjy")
+emission_energy = 0.0
+modulate = Color(0.964706, 0.2, 0, 1)
+normal_fade = 0.5
+script = ExtResource("3_fy7rc")
+albedo_atlas = Array[Texture2D]([ExtResource("1_wouf2"), ExtResource("5_paibq"), ExtResource("6_bxyqc"), ExtResource("7_tgyh3")])
+normal_atlas = Array[Texture2D]([ExtResource("2_6ab6d"), ExtResource("8_pxiaa"), ExtResource("9_cqslj"), ExtResource("10_014r3")])

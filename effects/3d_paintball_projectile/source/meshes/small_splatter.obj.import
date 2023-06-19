@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dc2ubyamtq2bw"
+path="res://.godot/imported/small_splatter.obj-30130ea8d522b4d2606233be2c3d9497.mesh"
+
+[deps]
+
+files=["res://.godot/imported/small_splatter.obj-30130ea8d522b4d2606233be2c3d9497.mesh"]
+
+source_file="res://effects/3d_paintball_projectile/source/meshes/small_splatter.obj"
+dest_files=["res://.godot/imported/small_splatter.obj-30130ea8d522b4d2606233be2c3d9497.mesh", "res://.godot/imported/small_splatter.obj-30130ea8d522b4d2606233be2c3d9497.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
