@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://7emx04c8a48h"]
+
+[ext_resource type="Script" path="res://effects/2d_trail/preview/2d_trail_preview.gd" id="1_48pm5"]
+[ext_resource type="Script" path="res://effects/2d_trail/preview/spin.gd" id="2_ftyfb"]
+
+[node name="Trail2DPreview" type="Node"]
+script = ExtResource("1_48pm5")
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="World2D"]
+unique_name_in_owner = true
+script = ExtResource("2_ftyfb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

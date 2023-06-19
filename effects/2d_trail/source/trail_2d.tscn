@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccu5w8tyq8qxe"]
+
+[ext_resource type="Script" path="res://effects/2d_trail/source/trail_2d.gd" id="1_2whe1"]
+
+[sub_resource type="Curve" id="Curve_e6mp6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Trail2D" type="Line2D"]
+top_level = true
+points = PackedVector2Array(0, 0, -100, 0)
+width = 32.0
+width_curve = SubResource("Curve_e6mp6")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("1_2whe1")

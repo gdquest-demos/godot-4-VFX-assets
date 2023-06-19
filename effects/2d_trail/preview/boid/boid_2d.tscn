@@ -1,0 +1,130 @@
+[gd_scene load_steps=19 format=3 uid="uid://caewflltiu630"]
+
+[ext_resource type="Script" path="res://effects/2d_trail/preview/boid/boid_2d.gd" id="1_hylip"]
+[ext_resource type="PackedScene" uid="uid://ccu5w8tyq8qxe" path="res://effects/2d_trail/source/trail_2d.tscn" id="3_4bq8u"]
+[ext_resource type="Material" uid="uid://ck8g4wwxfhe7a" path="res://effects/2d_trail/preview/material/star_mat.tres" id="3_l1l12"]
+[ext_resource type="Texture2D" uid="uid://ccvlwvrygafom" path="res://effects/2d_trail/preview/spark.png" id="5_12856"]
+[ext_resource type="Material" uid="uid://qrgqnpq1flde" path="res://effects/2d_trail/preview/material/main_trail_mat.tres" id="5_p6tyl"]
+[ext_resource type="Texture2D" uid="uid://o8w8a4ncuhuq" path="res://effects/2d_trail/preview/circle.png" id="6_r6nte"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7rk8p"]
+radius = 256.0
+
+[sub_resource type="Gradient" id="Gradient_uoudu"]
+offsets = PackedFloat32Array(0.812641, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jimu2"]
+gradient = SubResource("Gradient_uoudu")
+
+[sub_resource type="Curve" id="Curve_u580n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vu0b4"]
+curve = SubResource("Curve_u580n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g1o6j"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_vu0b4")
+color = Color(0.235294, 0.870588, 0.360784, 1)
+color_ramp = SubResource("GradientTexture1D_jimu2")
+
+[sub_resource type="Curve" id="Curve_knpog"]
+_data = [Vector2(0, 0), 0.0, 13.2956, 0, 0, Vector2(0.230146, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0q6oh"]
+offsets = PackedFloat32Array(0.812641, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4c1i1"]
+gradient = SubResource("Gradient_0q6oh")
+
+[sub_resource type="Curve" id="Curve_i6t1n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dy2b4"]
+curve = SubResource("Curve_i6t1n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mj7qd"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_dy2b4")
+color = Color(0.294118, 0.980392, 0.847059, 1)
+color_ramp = SubResource("GradientTexture1D_4c1i1")
+
+[node name="Boid2D" type="Node2D" groups=["boid_2d"]]
+script = ExtResource("1_hylip")
+
+[node name="Zone" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_7rk8p")
+
+[node name="VisualRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VisualRoot"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_g1o6j")
+texture = ExtResource("5_12856")
+lifetime = 0.25
+local_coords = true
+
+[node name="Star" type="ColorRect" parent="VisualRoot"]
+material = ExtResource("3_l1l12")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fade" parent="." node_paths=PackedStringArray("follow_node") instance=ExtResource("3_4bq8u")]
+unique_name_in_owner = true
+material = ExtResource("5_p6tyl")
+width = 48.0
+width_curve = SubResource("Curve_knpog")
+default_color = Color(1, 1, 1, 0.156863)
+follow_node = NodePath("..")
+
+[node name="Trail2D" parent="." node_paths=PackedStringArray("follow_node") instance=ExtResource("3_4bq8u")]
+unique_name_in_owner = true
+material = ExtResource("5_p6tyl")
+default_color = Color(0, 0.733333, 0.576471, 0.705882)
+follow_node = NodePath("..")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_mj7qd")
+texture = ExtResource("6_r6nte")
+lifetime = 0.5
