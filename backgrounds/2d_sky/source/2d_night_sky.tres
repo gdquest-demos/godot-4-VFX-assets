@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://brfkwdvavjrk3"]
+
+[ext_resource type="Shader" path="res://backgrounds/2d_sky/source/2d_sky.gdshader" id="1_3am4j"]
+
+[resource]
+shader = ExtResource("1_3am4j")
+shader_parameter/seed = 0.01
+shader_parameter/star_cell_size = 20.0
+shader_parameter/star_offset_amount = 0.25
+shader_parameter/top_color = Color(0, 0.0980392, 0.137255, 1)
+shader_parameter/scatter_color = Color(0.796078, 0.25098, 1, 1)
+shader_parameter/bottom_color = Color(0, 0.192157, 0.360784, 1)
+shader_parameter/scatter_intensity = 0.1
+shader_parameter/star_smoothness = 0.02
+shader_parameter/star_position = Vector2(0.26, 0.33)
+shader_parameter/star_size = 60.0
+shader_parameter/size = Vector2(1280, 720)
