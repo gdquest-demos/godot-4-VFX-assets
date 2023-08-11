@@ -1,17 +1,23 @@
 shader_type canvas_item;
 
-uniform vec3 background_color : source_color;
-uniform vec3 multiply_color : source_color;
-uniform sampler2D space_pattern_sampler : repeat_enable, filter_linear_mipmap;
+uniform vec2 uv_ratio = vec2(1.0);
+
+
+group_uniforms stars;
+uniform float seed = 0.0;
+uniform float chance : hint_range(0.94, 0.994, 0.001) = 0.95;
+uniform float base_scale : hint_range(0.5, 1.0, 0.1) = 0.7;
+uniform float star_space = 20.0;
+uniform vec2 view_offset = vec2(0.0);
 uniform sampler2D star_tile_sampler : filter_linear_mipmap;
 uniform sampler2D stars_color_gradient;
 
-uniform float seed = 0.0;
-uniform float chance = 0.95;
-uniform float base_scale = 40.0;
-uniform float star_count = 40.0;
-uniform vec2 view_offset = vec2(0.0);
-
+group_uniforms sky;
+uniform float wave_height : hint_range(0.0, 1.0, 0.1) = 0.1;
+uniform float sky_scale : hint_range(1.0, 2.0, 0.1) = 1.5;
+uniform vec3 background_color : source_color;
+uniform vec3 multiply_color : source_color;
+uniform sampler2D space_pattern_sampler : repeat_enable, filter_linear_mipmap;
 // Credits: Random and Rotate method from godotshaders.com
 // https://godotshaders.com/snippet/rotate/
 
@@ -38,8 +44,8 @@ float map(float value, float min1, float max1, float min2, float max2) {
 vec4 get_stars(vec2 coord, vec2 offset, float base_seed){
 	vec2 frag_coord_offset = coord + offset;
 	
-	vec2 pos = fract(1.0 / star_count * frag_coord_offset);
-	float cell_id = random(round(1.0 / star_count * frag_coord_offset + 0.5) + base_seed);
+	vec2 pos = fract(1.0 / star_space * frag_coord_offset);
+	float cell_id = random(round(1.0 / star_space * frag_coord_offset + 0.5) + base_seed);
 	
 	float stars_mask = 0.0;
 	vec3 stars_color = vec3(0.0);
@@ -61,7 +67,8 @@ vec4 get_stars(vec2 coord, vec2 offset, float base_seed){
 }
 
 void fragment(){
-	vec2 base_uv = rotate((UV * vec2(1.0, 0.95)) * 1.95 + vec2(0.0, sin(UV.x * PI * 2.0) * 0.15), vec2(0.5), 1.8);
+	vec2 uv = UV * uv_ratio;
+	vec2 base_uv = rotate(uv * sky_scale + vec2(0.0, sin(uv.x * PI * 2.0) * wave_height * uv.y), vec2(0.5), 1.8);
 	base_uv *= 0.75;
 	base_uv.x += TIME * 0.015;
 

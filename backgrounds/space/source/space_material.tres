@@ -13,13 +13,16 @@ gradient = SubResource("Gradient_ddiw4")
 
 [resource]
 shader = ExtResource("1_0xo2s")
-shader_parameter/background_color = Color(0.0313726, 0.0901961, 0.207843, 1)
-shader_parameter/multiply_color = Color(0.333333, 0.384314, 0.494118, 1)
-shader_parameter/seed = 0.033
+shader_parameter/uv_ratio = Vector2(1, 1)
+shader_parameter/seed = 0.0
 shader_parameter/chance = 0.993
-shader_parameter/base_scale = 0.75
-shader_parameter/star_count = 20.0
+shader_parameter/base_scale = 0.7
+shader_parameter/star_space = 20.0
 shader_parameter/view_offset = Vector2(0, 0)
-shader_parameter/space_pattern_sampler = ExtResource("2_x64ec")
 shader_parameter/star_tile_sampler = ExtResource("3_6wsqn")
 shader_parameter/stars_color_gradient = SubResource("GradientTexture1D_ufo41")
+shader_parameter/wave_height = 0.1
+shader_parameter/sky_scale = 1.5
+shader_parameter/background_color = Color(0.0313726, 0.0901961, 0.207843, 1)
+shader_parameter/multiply_color = Color(0.333333, 0.384314, 0.494118, 1)
+shader_parameter/space_pattern_sampler = ExtResource("2_x64ec")
