@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://do2oiiljaygra"]
+
+[ext_resource type="Shader" path="res://effects/2d_water/source/2d_water.gdshader" id="1_bqtiy"]
+[ext_resource type="Script" path="res://effects/2d_water/source/2d_water.gd" id="2_e4o47"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kvs17"]
+noise_type = 2
+fractal_gain = 0.4
+fractal_weighted_strength = 0.25
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_whqw7"]
+height = 1
+seamless = true
+noise = SubResource("FastNoiseLite_kvs17")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3esqw"]
+shader = ExtResource("1_bqtiy")
+shader_parameter/size = Vector2(1280, 360)
+shader_parameter/wave_width = 100.0
+shader_parameter/wave_height = 20.0
+shader_parameter/depth = 360.0
+shader_parameter/water_color = Color(0.678431, 0.933333, 1, 1)
+shader_parameter/depth_color = Color(0, 0.615686, 0.996078, 1)
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_whqw7")
+
+[node name="2DWaterPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sky" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.688959, 0.819779, 1, 1)
+
+[node name="2DWater" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_3esqw")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_e4o47")
