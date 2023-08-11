@@ -31,7 +31,9 @@ vec4 get_stars(vec2 coord){
 	position.x += sin(clamped_id * 10.0) * star_offset_amount;
 	position.y += cos(clamped_id * 10.0) * star_offset_amount;
 	
-	vec2 scaled_position = (position - 0.5) * 14.0 + 0.5;
+	float scale = 8.0 + (sin(clamped_id * 10.0 + TIME * 2.0) * 2.0);
+	
+	vec2 scaled_position = (position - 0.5) * scale + 0.5;
 	
 	vec3 stars_color = vec3(1.0) * clamped_id * 2.0;
 	float stars_alpha = 1.0 - distance(vec2(0.5), scaled_position);
@@ -50,4 +52,5 @@ void fragment() {
 	vec3 stars_color = stars.rgb * stars.a;
 	vec3 sky_color = mix(top_color, bottom_color, UV.y);
 	COLOR.rgb = sky_color + stars_color + smoothstep(0.0, star_smoothness, star_mask) + (scatter_color * sin(UV.y * PI) * scatter_intensity);
+	
 }
