@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7egbnd0mf61p"
-path.s3tc="res://.godot/imported/paintball_projectile_thumbnail.png-c0f78641074840828159581fbab47e18.s3tc.ctex"
+path="res://.godot/imported/paintball_projectile_thumbnail.png-c0f78641074840828159581fbab47e18.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://effects/3d_paintball_projectile/preview/paintball_projectile_thumbnail.png"
-dest_files=["res://.godot/imported/paintball_projectile_thumbnail.png-c0f78641074840828159581fbab47e18.s3tc.ctex"]
+dest_files=["res://.godot/imported/paintball_projectile_thumbnail.png-c0f78641074840828159581fbab47e18.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

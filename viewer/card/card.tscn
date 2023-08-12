@@ -25,6 +25,7 @@ script = ExtResource("1_ytnx2")
 
 [node name="Thumbnail" type="TextureRect" parent="."]
 unique_name_in_owner = true
+texture_filter = 4
 material = SubResource("ShaderMaterial_h4qkl")
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
