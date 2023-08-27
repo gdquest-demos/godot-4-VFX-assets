@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvcy6k0n4je8l"]
+
+[ext_resource type="PackedScene" uid="uid://i4n8kjwe3x24" path="res://effects/2d_vortex/source/vortex.tscn" id="1_8ywhk"]
+
+[node name="2DVortexPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.913725, 0.913725, 0.913725, 1)
+
+[node name="Vortex" parent="." instance=ExtResource("1_8ywhk")]
+layout_mode = 1

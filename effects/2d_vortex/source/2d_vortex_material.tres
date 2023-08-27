@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b7kli8o1poux8"]
+
+[ext_resource type="Shader" path="res://effects/2d_vortex/source/2d_vortex.gdshader" id="1_qsncs"]
+
+[resource]
+shader = ExtResource("1_qsncs")
+shader_parameter/speed = 1.0
+shader_parameter/opening = 0.5
+shader_parameter/bend = 1.5
