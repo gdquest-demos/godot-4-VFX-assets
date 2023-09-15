@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2gs1m76cnc1e"]
+
+[ext_resource type="Material" uid="uid://be40jontlw1es" path="res://effects/3d_hologram/source/hologram_visual_shader_mat.tres" id="1_pehh2"]
+[ext_resource type="ArrayMesh" uid="uid://ble7mria3mepn" path="res://shared/mesh/godot_head.obj" id="2_o238g"]
+
+[sub_resource type="Environment" id="Environment_6b7ur"]
+background_mode = 1
+background_color = Color(0.1, 0.1, 0.1, 1)
+glow_enabled = true
+
+[node name="HologramPreview" type="Node3D"]
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.898442, 0)
+material_override = ExtResource("1_pehh2")
+mesh = ExtResource("2_o238g")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6b7ur")

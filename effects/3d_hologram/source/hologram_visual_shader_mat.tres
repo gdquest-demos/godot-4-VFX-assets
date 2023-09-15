@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://be40jontlw1es"]
+
+[ext_resource type="Shader" uid="uid://bffnr7kxphvv" path="res://effects/3d_hologram/source/hologram_visual_shadr.tres" id="1_6smxj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6smxj")
+shader_parameter/BaseColor = Color(0.160784, 0.760784, 0.360784, 1)
+shader_parameter/Luminosity = 4.0
