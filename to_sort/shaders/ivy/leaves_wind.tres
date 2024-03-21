@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bbl7ycntgag70"]
+
+[ext_resource type="Shader" path="res://to_sort/shaders/ivy/leaves_wind.gdshader" id="1_3mhfa"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4lk71"]
+fractal_type = 0
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dk6oa"]
+seamless = true
+noise = SubResource("FastNoiseLite_4lk71")
+
+[resource]
+shader = ExtResource("1_3mhfa")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/sway_amount = 1.0
+shader_parameter/wind_sampler = SubResource("NoiseTexture2D_dk6oa")

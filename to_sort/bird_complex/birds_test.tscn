@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://7gn3y4fcnquv"]
+
+[ext_resource type="PackedScene" uid="uid://wxoy4nmqem8s" path="res://to_sort/bird_complex/bird.tscn" id="1_1876v"]
+[ext_resource type="Script" path="res://to_sort/bird_complex/navigation_region.gd" id="2_fx6u0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nr2ws"]
+vertices = PackedVector2Array(608, 64, 608, 512, 512, 512, 512, 224, 0, 64, 416, 224, 416, 384, 288, 384, 288, 288, 160, 288, 0, 384, 96, 384)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(4, 5, 8, 9), PackedInt32Array(10, 4, 9, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 64, 0, 384, 96, 384, 160, 288, 288, 288, 288, 384, 416, 384, 416, 224, 512, 224, 512, 512, 608, 512, 608, 64)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dr40r"]
+vertices = PackedVector2Array(-32, 192, 0, 288, -128, 256, -160, 96, 160, 128, 128, 224, 64, 160, 0, -64, 128, -64, 192, 0, -128, -64, -128, -224, 0, -224, 224, 96, 32, 192, -160, 0)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(10, 11, 12, 7), PackedInt32Array(9, 13, 4), PackedInt32Array(14, 0, 3, 15, 10, 7, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-128, -64, -160, 0, -160, 96, -128, 256, 0, 288, -32, 192, 32, 192, 64, 160, 128, 224, 160, 128, 224, 96, 192, 0, 128, -64, 0, -64, 0, -224, -128, -224)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[node name="BirdsTest" type="Node2D"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_nr2ws")
+script = ExtResource("2_fx6u0")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
+position = Vector2(992, 352)
+navigation_polygon = SubResource("NavigationPolygon_dr40r")
+script = ExtResource("2_fx6u0")
+
+[node name="Birds" type="Node2D" parent="."]
+
+[node name="bird" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(128, 160)
+
+[node name="bird2" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(384, 320)
+
+[node name="bird3" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(992, 416)
+
+[node name="bird5" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(1120, 480)
+
+[node name="bird6" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(896, 512)
+
+[node name="bird4" parent="Birds" instance=ExtResource("1_1876v")]
+position = Vector2(480, 160)

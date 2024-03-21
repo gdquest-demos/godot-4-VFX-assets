@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1tu3klvgfl0t"]
+
+[ext_resource type="Script" path="res://to_sort/chain/link.gd" id="1_g4id3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgcf1"]
+size = Vector2(16, 18)
+
+[node name="Link" type="RigidBody2D"]
+input_pickable = true
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("1_g4id3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wgcf1")

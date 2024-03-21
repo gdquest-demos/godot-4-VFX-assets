@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://wxoy4nmqem8s"]
+
+[ext_resource type="Script" path="res://to_sort/bird_complex/bird.gd" id="1_28o84"]
+[ext_resource type="Texture2D" uid="uid://dtwrktb17bsc" path="res://to_sort/bird_complex/sparrow.png" id="2_186k0"]
+[ext_resource type="Texture2D" uid="uid://cf2cqs8lsvau4" path="res://to_sort/bird_complex/sparrow_fly_1.png" id="2_cf41n"]
+[ext_resource type="Texture2D" uid="uid://col8vd7br7v2u" path="res://to_sort/bird_complex/sparrow_fly_2.png" id="3_1jdwv"]
+[ext_resource type="Texture2D" uid="uid://b01mnp8qxfbh7" path="res://to_sort/small_circle.png" id="3_cu82k"]
+[ext_resource type="Shader" path="res://to_sort/shaders/shadow.gdshader" id="5_5bv1i"]
+
+[sub_resource type="Curve" id="Curve_oe41r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.94862, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fo0tu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.6)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.2, 0.2, 0.2, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_byqou"]
+gradient = SubResource("Gradient_fo0tu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d84q7"]
+shader = ExtResource("5_5bv1i")
+shader_parameter/shadow_gradient = SubResource("GradientTexture1D_byqou")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqkkx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_186k0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cf41n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1jdwv")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iha3k"]
+radius = 82.0244
+
+[node name="bird" type="Node2D"]
+script = ExtResource("1_28o84")
+elevation_curve = SubResource("Curve_oe41r")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_d84q7")
+scale = Vector2(1.5625, 0.976562)
+texture = ExtResource("3_cu82k")
+
+[node name="Root" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Root"]
+unique_name_in_owner = true
+position = Vector2(-1, -5)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_tqkkx")
+offset = Vector2(8, -18.75)
+
+[node name="AirTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="PeckTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="WalkAroundTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="FearZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FearZone"]
+shape = SubResource("CircleShape2D_iha3k")

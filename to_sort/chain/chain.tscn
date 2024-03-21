@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgya6rqrb2fyv"]
+
+[ext_resource type="Script" path="res://to_sort/chain/chain.gd" id="1_aroyj"]
+[ext_resource type="Texture2D" uid="uid://c6jqxnvnidp8u" path="res://to_sort/chain/chain_face.png" id="2_1epju"]
+[ext_resource type="Texture2D" uid="uid://c8qpetad50dhb" path="res://to_sort/chain/chain_side.png" id="3_vf41r"]
+
+[node name="Chain" type="Node2D"]
+script = ExtResource("1_aroyj")
+link_textures = Array[Texture]([ExtResource("2_1epju"), ExtResource("3_vf41r")])

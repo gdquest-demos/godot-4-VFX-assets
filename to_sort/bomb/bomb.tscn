@@ -1,0 +1,140 @@
+[gd_scene load_steps=25 format=3 uid="uid://05wlg2dsjvx"]
+
+[ext_resource type="Texture2D" uid="uid://cbvaa47b8f8do" path="res://to_sort/bomb/bomb.png" id="1_1a1xu"]
+[ext_resource type="Script" path="res://to_sort/bomb/bomb.gd" id="1_b2k1u"]
+[ext_resource type="Texture2D" uid="uid://dtq81dy0igqcy" path="res://to_sort/bomb/bomb_highlight.png" id="2_f68l5"]
+[ext_resource type="Shader" path="res://to_sort/shaders/shadow.gdshader" id="2_xtu5a"]
+[ext_resource type="Texture2D" uid="uid://b01mnp8qxfbh7" path="res://to_sort/small_circle.png" id="3_p26jf"]
+[ext_resource type="Shader" path="res://to_sort/bomb/flame_shape.gdshader" id="4_m1rqm"]
+[ext_resource type="Texture2D" uid="uid://caqe2rb5sinil" path="res://to_sort/bomb/spark_particle.png" id="5_6ghlg"]
+[ext_resource type="Texture2D" uid="uid://dtyhs1oqjligy" path="res://to_sort/bomb/bomb_contour.png" id="5_l5y2s"]
+[ext_resource type="Texture2D" uid="uid://88m347xt4ima" path="res://to_sort/bomb/flame_shape.png" id="5_m2s10"]
+
+[sub_resource type="Curve" id="Curve_2we8a"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.45287, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_dqfae"]
+_data = [Vector2(0.3, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gjnk2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.6)
+colors = PackedColorArray(0.4, 0.4, 0.4, 1, 0.2, 0.2, 0.2, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rg04a"]
+gradient = SubResource("Gradient_gjnk2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8bmkx"]
+shader = ExtResource("2_xtu5a")
+shader_parameter/shadow_gradient = SubResource("GradientTexture1D_rg04a")
+
+[sub_resource type="Gradient" id="Gradient_jekpn"]
+offsets = PackedFloat32Array(0, 0.9, 1)
+colors = PackedColorArray(1, 0.416667, 0, 1, 1, 0.717647, 0, 1, 1, 0.717647, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ks57"]
+gradient = SubResource("Gradient_jekpn")
+
+[sub_resource type="Curve" id="Curve_2qbjs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wrn37"]
+curve = SubResource("Curve_2qbjs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g2774"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+damping_min = 20.0
+damping_max = 40.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_wrn37")
+color_ramp = SubResource("GradientTexture1D_1ks57")
+
+[sub_resource type="Gradient" id="Gradient_b7oax"]
+offsets = PackedFloat32Array(0, 0.617391)
+colors = PackedColorArray(1, 0.4, 0, 1, 1, 0.721569, 0.164706, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pfq0x"]
+gradient = SubResource("Gradient_b7oax")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_upuep"]
+noise_type = 2
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dkibu"]
+seamless = true
+noise = SubResource("FastNoiseLite_upuep")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwbtd"]
+resource_local_to_scene = true
+shader = ExtResource("4_m1rqm")
+shader_parameter/time_scale = 2.5
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/noise_sampler = SubResource("NoiseTexture2D_dkibu")
+shader_parameter/flame_gradient = SubResource("GradientTexture1D_pfq0x")
+
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_b2k1u")
+default_color = Color(0.188235, 0.188235, 0.188235, 1)
+danger_color = Color(0.941176, 0.305882, 0, 1)
+wobble_intensity = SubResource("Curve_2we8a")
+color_intensity = SubResource("Curve_dqfae")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_8bmkx")
+position = Vector2(0, 17)
+scale = Vector2(3.375, 2.10937)
+texture = ExtResource("3_p26jf")
+
+[node name="BombRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BombContour" type="Sprite2D" parent="BombRoot"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1.49003e-08, -16)
+texture = ExtResource("5_l5y2s")
+
+[node name="Line2D" type="Line2D" parent="BombRoot"]
+unique_name_in_owner = true
+position = Vector2(-9.09495e-13, -54)
+rotation = -0.00323962
+points = PackedVector2Array(0, 0, 0, -32)
+width = 8.0
+default_color = Color(0.870588, 0.815686, 0.694118, 1)
+end_cap_mode = 2
+
+[node name="RopeEnd" type="Node2D" parent="BombRoot/Line2D"]
+unique_name_in_owner = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="BombRoot/Line2D/RopeEnd"]
+process_material = SubResource("ParticleProcessMaterial_g2774")
+texture = ExtResource("5_6ghlg")
+lifetime = 0.45
+
+[node name="Flame" type="Sprite2D" parent="BombRoot/Line2D/RopeEnd"]
+material = SubResource("ShaderMaterial_rwbtd")
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_m2s10")
+offset = Vector2(0, -80)
+
+[node name="Bomb" type="Sprite2D" parent="BombRoot"]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -16)
+texture = ExtResource("1_1a1xu")
+
+[node name="BombHighlight" type="Sprite2D" parent="BombRoot/Bomb"]
+unique_name_in_owner = true
+texture = ExtResource("2_f68l5")
